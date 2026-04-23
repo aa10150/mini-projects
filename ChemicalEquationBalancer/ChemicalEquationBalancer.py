@@ -10,7 +10,7 @@ from sympy import Matrix
 def main():
     print("Chemical Equation Balancer. Use () for subgroups and * for hydrates.")
     left = parse(input("Reactants: "), False)
-    right = parse(input("Products: "), False)
+    right = parse(input("Products:  "), False)
     newLeft, newRight = balance(left, right)
     highestCoeff = 0
     for molecule in newLeft:
