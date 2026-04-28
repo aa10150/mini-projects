@@ -49,9 +49,9 @@ def main():
             sideDeckItem = sideDeck[sideDeck.index(item)]
             sideDeckItem[1] = True
         printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
-        drawFrom = takeInt("Draw from:\n1-7 for columns\n0 for right side stacks\n" \
-        "8 for left side deck\n9 for left side cards\n", False)
-        # draw from a right side stack
+        drawFrom = takeInt("Draw from:\n1-7 for columns\n0 for foundation piles\n" \
+        "8 for stockpile\n9 for waste pile\n", False)
+        # draw from a right side stack (foundation pile)
         if drawFrom == 0:
             printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
             drawStack = takeInt("Draw from:\n1 for ♠\n2 for \033[31m♥\033[0m\n3 for ♣\n4 for \033[31m♦\033[0m\n", False)
@@ -106,7 +106,7 @@ def main():
             printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
             if len(cards) == 1:
                 print("\n")
-                placeOn = takeInt("Place on:\n1-7 for columns\n0 for right side stacks\n", False)
+                placeOn = takeInt("Place on:\n1-7 for columns\n0 for foundation piles\n", False)
             else:
                 print("\n"*2)
                 placeOn = takeInt("Place on:\n1-7 for columns\n", False)
@@ -148,7 +148,7 @@ def main():
                             field[colNo][-1][1] = True
             else:
                 continue
-        # draw from left side deck
+        # draw from left side deck (stockpile)
         elif drawFrom == 8:
             # draw one more, hide one if already three
             if SDVisIdx + SDVisLen <= len(sideDeck) - 1:
@@ -167,7 +167,7 @@ def main():
             else:
                 printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
                 print("\n")
-                placeOn = takeInt("Place on:\n1-7 for columns\n0 for right side stacks\n", False)
+                placeOn = takeInt("Place on:\n1-7 for columns\n0 for foundation piles\n", False)
                 card = sideDeckInView[-1][0]
                 # place on matching stack
                 if placeOn == 0:
@@ -291,7 +291,7 @@ def printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, 
                 print("   ", end="")
         if showRows:
             print(i+1, end="")
-        # right side stacks
+        # right side stacks (foundation piles)
         if i == 0:
             if showRows:
                 print(" ", end="")
