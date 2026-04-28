@@ -55,12 +55,12 @@ def main():
         if drawFrom == 0:
             printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
             drawStack = takeInt("Draw from:\n1 for ♠\n2 for \033[31m♥\033[0m\n3 for ♣\n4 for \033[31m♦\033[0m\n", False)
-            printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
-            print("\n"*2)
-            placeOn = takeInt("Place on:\n1-7 for columns\n", False)
             if drawStack == 1:
                 if len(sStack) == 0:
                     continue
+                printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+                print("\n"*2)
+                placeOn = takeInt("Place on:\n1-7 for columns\n", False)
                 if placeOn > 0 and placeOn <= 7:
                     placeUnderColumnFromStack(sStack, field, placeOn-1)
                 else:
@@ -68,6 +68,9 @@ def main():
             elif drawStack == 2:
                 if len(hStack) == 0:
                     continue
+                printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+                print("\n"*2)
+                placeOn = takeInt("Place on:\n1-7 for columns\n", False)
                 if placeOn > 0 and placeOn <= 7:
                     placeUnderColumnFromStack(hStack, field, placeOn-1)
                 else:
@@ -75,6 +78,9 @@ def main():
             elif drawStack == 3:
                 if len(cStack) == 0:
                     continue
+                printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+                print("\n"*2)
+                placeOn = takeInt("Place on:\n1-7 for columns\n", False)
                 if placeOn > 0 and placeOn <= 7:
                     placeUnderColumnFromStack(cStack, field, placeOn-1)
                 else:
@@ -82,6 +88,9 @@ def main():
             elif drawStack == 4:
                 if len(dStack) == 0:
                     continue
+                printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+                print("\n"*2)
+                placeOn = takeInt("Place on:\n1-7 for columns\n", False)
                 if placeOn > 0 and placeOn <= 7:
                     placeUnderColumnFromStack(dStack, field, placeOn-1)
                 else:
