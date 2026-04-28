@@ -53,7 +53,41 @@ def main():
         "8 for left side deck\n9 for left side cards\n", False)
         # draw from a right side stack
         if drawFrom == 0:
-            return 0
+            printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+            drawStack = takeInt("Draw from:\n1 for ♠\n2 for \033[31m♥\033[0m\n3 for ♣\n4 for \033[31m♦\033[0m\n", False)
+            printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
+            print("\n"*2)
+            placeOn = takeInt("Place on:\n1-7 for columns\n", False)
+            if drawStack == 1:
+                if len(sStack) == 0:
+                    continue
+                if placeOn > 0 and placeOn <= 7:
+                    placeUnderColumnFromStack(sStack, field, placeOn-1)
+                else:
+                    continue
+            elif drawStack == 2:
+                if len(hStack) == 0:
+                    continue
+                if placeOn > 0 and placeOn <= 7:
+                    placeUnderColumnFromStack(hStack, field, placeOn-1)
+                else:
+                    continue
+            elif drawStack == 3:
+                if len(cStack) == 0:
+                    continue
+                if placeOn > 0 and placeOn <= 7:
+                    placeUnderColumnFromStack(cStack, field, placeOn-1)
+                else:
+                    continue
+            elif drawStack == 4:
+                if len(dStack) == 0:
+                    continue
+                if placeOn > 0 and placeOn <= 7:
+                    placeUnderColumnFromStack(dStack, field, placeOn-1)
+                else:
+                    continue
+            else:
+                continue
         # draw from a column
         elif drawFrom <= 7:
             colNo = drawFrom - 1
@@ -190,6 +224,16 @@ def main():
     printField(field, sideDeck, sideDeckInView, sStack, hStack, cStack, dStack, False)
     print("\n"*2)
     print("Win!")
+
+def placeUnderColumnFromStack(stack, field, colNo):
+    card = stack[-1][0]
+    if len(field[colNo]) == 0:
+        if card[0] == 13:
+            field[colNo].append(stack[-1])
+            stack.pop()
+    elif checkValidMove(card, field[colNo][-1][0]):
+        field[colNo].append(stack[-1])
+        stack.pop()
 
 def placeOnStack(stack, removeFrom, card, takeFrom):
     if len(stack) == 0 and card[0] == 1:
