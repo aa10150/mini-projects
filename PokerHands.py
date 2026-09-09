@@ -95,13 +95,6 @@ def checkHand(hand):
     else:
         print("High Card")
 
-"""
-Three of a kind: Three cards of same rank plus two kickers
-Two pair: Two cards of one rank, two of another, plus kicker
-One pair: Two cards of same rank plus three kickers
-High card: No matching set, value by highest card
-"""
-
 def royalFlush(hand):
     ranks = []
     suits = []
